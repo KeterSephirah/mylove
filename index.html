@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enigma do Amor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', sans-serif;
+      background: url('imagens/fundoFofo.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #444;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      color: #d63384;
+      animation: fadeInDown 1s ease-out;
+    }
+    .container {
+      max-width: 500px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease-out;
+    }
+    .step {
+      display: none;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    .step.active {
+      display: block;
+    }
+    button {
+      background: #d63384;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1em;
+      margin-top: 20px;
+      transition: background 0.3s, transform 0.3s;
+    }
+    button:hover {
+      background: #ad296a;
+      transform: scale(1.05);
+    }
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      width: 100%;
+      margin-top: 10px;
+      transition: border-color 0.3s;
+    }
+    input:focus {
+      border-color: #d63384;
+      outline: none;
+    }
+    .discord-button {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #7289da;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 1.1em;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    .discord-button:hover {
+      background-color: #5b6eae;
+      transform: scale(1.05);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Nosso Enigma</h1>
+    <div class="step active" id="step0">
+      <p>Oi, meu amor! Aqui começa nosso enigma. 💖</p>
+      <button onclick="nextStep()">Começar</button>
+    </div>
+    <div class="step" id="step1">
+      <h2>Dia 5 – Meu Jogo Favorito</h2>
+      <input type="text" id="answer1" placeholder="Digite aqui...">
+      <button onclick="checkAnswer(1, 'death stranding')">Confirmar</button>
+    </div>
+    <div class="step" id="step2">
+      <h2>Dia 4 – O Dia do Pedido</h2>
+      <input type="text" id="answer2" placeholder="Digite aqui...">
+      <button onclick="checkAnswer(2, '09/03')">Confirmar</button>
+    </div>
+    <div class="step" id="step3">
+      <h2>Dia 3 – Nosso Jogo</h2>
+      <input type="text" id="answer3" placeholder="Digite aqui...">
+      <button onclick="checkAnswer(3, 'the painscreek killings')">Confirmar</button>
+    </div>
+    <div class="step" id="step4">
+      <h2>Dia 2 – Seu Jogo Favorito</h2>
+      <input type="text" id="answer4" placeholder="Digite aqui...">
+      <button onclick="checkAnswer(4, 'rain world')">Confirmar</button>
+    </div>
+    <div class="step" id="step5">
+      <h2>Dia 1 – Um Sentimento</h2>
+      <input type="text" id="answer5" placeholder="Digite aqui...">
+      <button onclick="checkAnswer(5, 'amor')">Confirmar</button>
+    </div>
+    <div class="step" id="step6">
+      <h2>Por fim 💭</h2>
+      <p>Agora me conta... o que você mais gosta em mim?</p>
+      <input type="text" placeholder="Escreve aqui ❤️">
+      <button onclick="finalMessage()">Finalizar</button>
+    </div>
+    <div class="step" id="final">
+      <h2>Te amo muito!</h2>
+      <p>Obrigado por fazer parte da minha vida. Que esse seja só o começo da nossa história! 💞</p>
+      <p>Aqui está o restante da surpresa:</p>
+      <a class="discord-button" href="https://discord.gg/zRVpP2mXrz" target="_blank">🎁 Entrar no servidor do Discord</a>
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 0;
+
+    function nextStep() {
+      document.getElementById(`step${currentStep}`).classList.remove('active');
+      currentStep++;
+      document.getElementById(`step${currentStep}`).classList.add('active');
+    }
+
+    function checkAnswer(step, correct) {
+      const input = document.getElementById(`answer${step}`).value.trim().toLowerCase();
+      if (input === correct.toLowerCase()) {
+        nextStep();
+      } else {
+        alert('Errado meu amor, tenta outra coisa 💕');
+      }
+    }
+
+    function finalMessage() {
+      document.getElementById(`step${currentStep}`).classList.remove('active');
+      document.getElementById(`final`).classList.add('active');
+    }
+  </script>
+</body>
+</html>
