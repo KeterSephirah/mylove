@@ -32,11 +32,16 @@
     }
     .container {
       max-width: 500px;
-      padding: 30px;
-      background: rgba(255, 255, 255, 0.9);
+      width: 90%;
+      padding: 20px;
+      background: white;
       border-radius: 20px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      animation: fadeIn 1s ease-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.5s;
     }
     .step {
       display: none;
@@ -100,48 +105,55 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="heart-container">
     <h1>Nosso Enigma</h1>
+
     <div class="step active" id="step0">
       <p>Oi, meu amor! Aqui começa nosso enigma. 💖</p>
       <button onclick="nextStep()">Começar</button>
     </div>
+
     <div class="step" id="step1">
       <h2>Dia 5 – Meu Jogo Favorito</h2>
-      <input type="text" id="answer1" placeholder="Digite aqui...">
+      <input type="text" id="answer1" placeholder="Digite aqui..."><br>
       <button onclick="checkAnswer(1, 'death stranding')">Confirmar</button>
     </div>
+
     <div class="step" id="step2">
       <h2>Dia 4 – O Dia do Pedido</h2>
-      <input type="text" id="answer2" placeholder="Digite aqui...">
+      <input type="text" id="answer2" placeholder="Digite aqui..."><br>
       <button onclick="checkAnswer(2, '09/03')">Confirmar</button>
     </div>
+
     <div class="step" id="step3">
       <h2>Dia 3 – Nosso Jogo</h2>
-      <input type="text" id="answer3" placeholder="Digite aqui...">
+      <input type="text" id="answer3" placeholder="Digite aqui..."><br>
       <button onclick="checkAnswer(3, 'the painscreek killings')">Confirmar</button>
     </div>
+
     <div class="step" id="step4">
       <h2>Dia 2 – Seu Jogo Favorito</h2>
-      <input type="text" id="answer4" placeholder="Digite aqui...">
+      <input type="text" id="answer4" placeholder="Digite aqui..."><br>
       <button onclick="checkAnswer(4, 'rain world')">Confirmar</button>
     </div>
+
     <div class="step" id="step5">
       <h2>Dia 1 – Um Sentimento</h2>
-      <input type="text" id="answer5" placeholder="Digite aqui...">
+      <input type="text" id="answer5" placeholder="Digite aqui..."><br>
       <button onclick="checkAnswer(5, 'amor')">Confirmar</button>
     </div>
+
     <div class="step" id="step6">
-      <h2>Por fim 💭</h2>
-      <p>Agora me conta... o que você mais gosta em mim?</p>
-      <input type="text" placeholder="Escreve aqui ❤️">
+      <h2>Por fim...</h2>
+      <p>O que você mais gosta em mim?</p>
+      <input type="text" placeholder="Escreve aqui ❤️"><br>
       <button onclick="finalMessage()">Finalizar</button>
     </div>
+
     <div class="step" id="final">
       <h2>Te amo muito!</h2>
-      <p>Obrigado por fazer parte da minha vida. Que esse seja só o começo da nossa história! 💞</p>
-      <p>Aqui está o restante da surpresa:</p>
-      <a class="discord-button" href="https://discord.gg/zRVpP2mXrz" target="_blank">🎁 Entrar no servidor do Discord</a>
+      <p>Obrigado por fazer parte da minha vida. Que esse seja só o começo da nossa história!</p>
+      <a class="discord-button" href="https://discord.gg/zRVpP2mXrz" target="_blank">Ir para o Servidor 💌</a>
     </div>
   </div>
 
@@ -149,9 +161,11 @@
     let currentStep = 0;
 
     function nextStep() {
-      document.getElementById(`step${currentStep}`).classList.remove('active');
+      const current = document.getElementById(`step${currentStep}`);
+      if (current) current.classList.remove('active');
       currentStep++;
-      document.getElementById(`step${currentStep}`).classList.add('active');
+      const next = document.getElementById(`step${currentStep}`);
+      if (next) next.classList.add('active');
     }
 
     function checkAnswer(step, correct) {
@@ -159,7 +173,7 @@
       if (input === correct.toLowerCase()) {
         nextStep();
       } else {
-        alert('Errado meu amor, tenta outra coisa 💕');
+        alert('Errado meu amor, tenta de novo! 💔');
       }
     }
 
